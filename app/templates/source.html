@@ -1,1 +1,13 @@
-<h1> Hello Source {{ id }} </h1>
+{% extends 'base.html' %}
+{% import 'macros.html' as macro %}
+
+<!--Content block-->
+{% block content%}
+
+<!--Top sources section-->
+<h3> Featured Articles</h3>
+<ul>
+    {{macro.displaySourceList(sources)}}
+</ul>
+
+{% endblock %}

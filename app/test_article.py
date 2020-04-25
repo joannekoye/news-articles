@@ -12,7 +12,7 @@ class ArticleTest(unittest.TestCase):
         '''
         Set up method that will run before every test
         '''
-        self.new_article = Article('BBC News', 'Judge sympathises with man who stabbed protesters', 'The judge who jailed the man for the attack at an anti-government protest said he was a victim.', 'http://www.bbc.co.uk/news/world-asia-china-52426377', 'https://ichef.bbci.co.uk/news/660/cpsprodpb/DE47/production/_107830965_hi054857675.jpg', '2020-04-25T14:49:51Z', 'Hong Kong tour guide jailed for 45 months for stabbing three people during last year\'s anti-government protests ha…')
+        self.new_article = Article('BBC News', 'Judge sympathises with man who stabbed protesters', 'The judge who jailed the man for the attack at an anti-government protest said he was a victim.', 'http://www.bbc.co.uk/news/world-asia-china-52426377', '2020-04-25T14:49:51Z', 'Hong Kong tour guide jailed for 45 months for stabbing three people during last year\'s anti-government protests ha…',)
 
     
     def test_instance(self):

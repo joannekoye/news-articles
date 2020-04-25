@@ -13,10 +13,14 @@ def index():
     top_headlines = get_top_headlines()
     sources = get_sources()
 
-    title = 'NEWS-ARTICLES curates the world\'s stories so you can focus on investing in yourself, staying informed, and getting involved.'
+    title =' NEWS-ARTICLES - Stay Informed, Get Involved '
+    # title = 'NEWS-ARTICLES curates the world\'s stories so you can focus on investing in yourself, staying informed, and getting involved.'
     return render_template('index.html', title= title, headlines = top_headlines, sources= sources )
 
 
 @app.route('/source/<id>')
 def source(id):
-    return render_template('source.html', id = id)
+    news_articles = view_source(id)
+    title = id
+
+    return render_template('source.html', title = title, articles= news_articles)

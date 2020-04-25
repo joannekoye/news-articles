@@ -1,14 +1,18 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        {% if title %}
-        <title> {{ title }}</title>
-        {% else %}
-        <title> Welcome to the best news article website </title>
-        {% endif %}
-    </head>
-    <body>
+{% extends 'base.html' %}
+{% import 'macros.html' as macro %}
 
-    </body>
-</html>
+<!--Content block-->
+{% block content%}
+<!--Top headlines section-->
+<h3>Today's headlines</h3>
+<ul>
+    {{ macro.displayTopHeadlines(headlines) }}
+</ul>
+
+<!--Top sources section-->
+<h3> Top News Sources</h3>
+<ul>
+    {{macro.displaySourceList(sources)}}
+</ul>
+
+{% endblock %}

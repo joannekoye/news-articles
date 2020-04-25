@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macro %}
+
+<!--Content block-->
+{% block content%}
+
+<!--Top sources section-->
+<h3> Top News Sources</h3>
+<ul>
+    {{macro.displaySourceList(sources)}}
+</ul>
+
+{% endblock %}

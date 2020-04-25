@@ -1,0 +1,20 @@
+{% macro displayTopHeadlines(top_headlines) %}
+
+    {% for headline in top_headlines %}
+        <li>{{ headline.title }}</li>
+    {% endfor %}
+
+{% endmacro %}
+
+
+{% macro displaySourceList(source_list) %}
+
+    {% for source in source_list %}
+        <li>{{ source.name }}</li>
+    {% endfor %}
+
+{% endmacro %}
+
+{% macro displayNewsArticles(source_articles) %}
+
+    {% for  %}
