@@ -144,3 +144,45 @@ def process_sources(source_list):
         source_results.append(source_object)
 
     return source_results
+
+
+def open_source(source_id):
+    '''
+    Function that processes a news source and transforms it into an object list
+
+    Args:
+        source_id: An id of a specific news source
+
+    Returns:
+        source_articles: A list of items in the source object
+    
+    '''
+    get_news_source_url = everything_url.format(source_id, api_key)
+
+    with urllib.request.urlopen(get_news_source_url) as url:
+        source_data = url.read()
+        source_response = json.loads(source_data)
+
+        source_items = None
+
+        if source_response['articles']:
+            source_article_list = source_response['articles']
+            source_articles = process_articles(source_article_list)
+
+    return source_articles
+
+
+# def search_article(name , source_id):
+#     get_search_result_url = search_url.format(source_id, name, api_key)
+
+#     with urllib.request.urlopen(get_search_result_url) as url:
+#         search_article_data = url.read()
+#         search_article_response = json.loads(search_article_data)
+
+#         search_results = None
+
+#         if search_article_response['articles']:
+#             search_list = search_article_response['articles']
+#             search_results = process_news(search_list)
+
+#     return search_results

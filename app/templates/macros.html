@@ -16,5 +16,16 @@
 {% endmacro %}
 
 {% macro displayNewsArticles(source_articles) %}
-
-    {% for  %}
+  {% for article in source_articles %}
+      <div>
+        <li class="text-center">
+          <h5> <strong>Author: </strong> {{article.author}}</h5>
+          <h4> <strong>Title:</strong> {{article.title}}</h4>
+          <p> <strong>Description:</strong> {{article.description}}</p>
+          <h5> <strong>Published on:</strong> {{article.publishedAt | date}}</h5>
+          <p>{{article.content}}</p>
+          <a href={{article.url}}><button type="button" class="btn btn-info"> Continue Reading </button></a>
+        </li>
+      </div>
+  {% endfor %}
+{% endmacro %}
