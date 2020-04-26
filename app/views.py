@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, request
 from app import app
 from .requests import get_top_headlines, get_sources, get_by_language, get_by_category, open_source_articles
 
@@ -9,14 +9,26 @@ def index():
     '''
     View root page function that returns the index page and its data
     '''
-
     top_headlines = get_top_headlines()
     sources = get_sources()
 
     title =' NEWS-ARTICLES - Stay Informed, Get Involved '
-    # title = 'NEWS-ARTICLES curates the world\'s stories so you can focus on investing in yourself, staying informed, and getting involved.'
-    return render_template('index.html', title= title, headlines = top_headlines, sources= sources )
 
+    sort_type = request.args.get('sortBy_query')
+
+    Categories = ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology']
+    NewCategories = []
+    for Category in Categories:
+        category = get_by_category(Category)
+        NewCategories.append(category)
+
+    Languages = ['en', 'ar', 'de', 'es', 'fr', 'he', 'it', 'nl', 'no', 'pt', 'ru', 'se', 'ud', 'zh']
+    NewLanguages = []
+    for Language in Languages:
+        language = get_by_language(Language)
+        NewLanguages.append(language)
+
+    return render_template('index.html', sources = sources, title = title, Categories = NewCategories, Languages = NewLanguages, sort_type = sort_type, headlines = top_headlines)
 
 @app.route('/source/<id>')
 def source_articles(id):

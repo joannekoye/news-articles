@@ -1,19 +1,4 @@
-{% macro displayTopHeadlines(top_headlines) %}
 
-    <!-- {% for headline in headlines %}
-    <div class="card col-sm-12 col-md-4">
-        <div class="card-body text-center">
-            <h4 class="card-title">{{headline.title}}</h4>
-            <br>
-            <hr>
-            <a href={{headline.url}}><button type="button" class="btn btn-primary"> Get full story </button></a>
-            <br>
-        </div>
-    </div>
-    
-    {% endfor %} -->
-
-{% endmacro %}
 
 {% macro displaySourceList(source_list) %}
 
@@ -46,5 +31,22 @@
         </div>
       </div>
       <br>
+  {% endfor %}
+{% endmacro %}
+
+{% macro displayCategory(all_news_sources) %}
+  {% for source in all_news_sources %}
+    {% if source == all_news_sources[0] %}
+      <h3> {{ source.category | capitalize | center}} News</h3>
+    {% endif %}
+  {% endfor %}
+{% endmacro %}
+
+{% macro displayLanguage(all_news_sources) %}
+  {% for source in all_news_sources %}
+    {% if source == all_news_sources[0] %}
+      <h3> {{ source.language | capitalize | center}} Language News</h3>
+      <hr>
+    {% endif %}
   {% endfor %}
 {% endmacro %}
