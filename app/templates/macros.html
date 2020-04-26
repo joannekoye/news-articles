@@ -1,7 +1,15 @@
 {% macro displayTopHeadlines(top_headlines) %}
 
     {% for headline in top_headlines %}
-        <li>{{ headline.title }}</li>
+        <div>
+        <li class="text-center">
+          
+          <h4> {{headline.title}}</h4>
+          
+          
+          <a href={{headline.url}}><button type="button" class="btn btn-info"> Get full story </button></a>
+        </li>
+      </div>
     {% endfor %}
 
 {% endmacro %}
@@ -10,7 +18,15 @@
 {% macro displaySourceList(source_list) %}
 
     {% for source in source_list %}
-        <li>{{ source.name }}</li>
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 piece">
+        <li class="text-center">
+          <h4>{{ source.name }}</h4>
+          <hr>
+          <h5>{{ source.description }}</h5>
+          <a href={{ source.url }}><button type="button" class="btn btn-info"> Visit Website</button></a>
+          <a href="/source/{{ source.id }}"><button type="button" class="btn btn-info">  Explore Articles</button></a>
+        </li>
+      </div>
     {% endfor %}
 
 {% endmacro %}
@@ -22,7 +38,7 @@
           <h5> <strong>Author: </strong> {{article.author}}</h5>
           <h4> <strong>Title:</strong> {{article.title}}</h4>
           <p> <strong>Description:</strong> {{article.description}}</p>
-          <h5> <strong>Published on:</strong> {{article.publishedAt | date}}</h5>
+          <h5> <strong>Published on:</strong> {{article.publishedAt}}</h5>
           <p>{{article.content}}</p>
           <a href={{article.url}}><button type="button" class="btn btn-info"> Continue Reading </button></a>
         </li>

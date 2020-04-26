@@ -146,7 +146,7 @@ def process_sources(source_list):
     return source_results
 
 
-def open_source(source_id):
+def open_source_articles(source_id):
     '''
     Function that processes a news source and transforms it into an object list
 
