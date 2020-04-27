@@ -96,7 +96,7 @@ def get_by_category(category):
 
         if category_response['sources']:
             category_sources_list = category_response['sources']
-            all_category_cources = process_sources(category_sources_list)
+            all_category_sources = process_sources(category_sources_list)
 
     return all_category_sources
 

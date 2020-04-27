@@ -40,7 +40,7 @@
       {% if sort_type == 'Language' %}
         <div class="language">
           {% for Language in Languages %}
-            <div class="col-sm-12 col-md-12">
+            <div class="col-sm-12 col-md-12 text-center">
               {{macro.displayLanguage(Language)}}
             </div>
             <ul class="row">
@@ -52,11 +52,11 @@
       {% elif sort_type == 'Category' %}
         <div class="category">
           {% for Category in Categories %}
-            <div class="col-sm-12 col-md-12">
+            <div class="col-sm-12 col-md-12 text-center">
               {{macro.displayCategory(Category)}}
             </div>
             <ul class="row">
-              {{macro.displayNewsArticles(Category)}}
+              {{macro.displaySourceList(Category)}}
             </ul>
           {% endfor %}
         </div>

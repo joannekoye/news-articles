@@ -38,6 +38,7 @@
   {% for source in all_news_sources %}
     {% if source == all_news_sources[0] %}
       <h3> {{ source.category | capitalize | center}} News</h3>
+      <hr>
     {% endif %}
   {% endfor %}
 {% endmacro %}
