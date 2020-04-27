@@ -18,6 +18,30 @@ category_url = app.config['CATEGORY_URL']
 language_url = app.config['LANGUAGE_URL']
 search_url = app.config['SEARCH_URL']
 
+def open_source_articles(source_id):
+    '''
+    Function that processes a news source and transforms it into an object list
+
+    Args:
+        source_id: An id of a specific news source
+
+    Returns:
+        source_articles: A list of items in the source object
+    
+    '''
+    get_news_source_url = everything_url.format(source_id, api_key)
+
+    with urllib.request.urlopen(get_news_source_url) as url:
+        source_data = url.read()
+        source_response = json.loads(source_data)
+
+        source_items = None
+
+        if source_response['articles']:
+            source_article_list = source_response['articles']
+            source_articles = process_articles(source_article_list)
+
+    return source_articles
 
 def get_top_headlines():
     '''
@@ -56,30 +80,7 @@ def get_sources():
 
     return news_sources
 
-def open_source_articles(source_id):
-    '''
-    Function that processes a news source and transforms it into an object list
 
-    Args:
-        source_id: An id of a specific news source
-
-    Returns:
-        source_articles: A list of items in the source object
-    
-    '''
-    get_news_source_url = everything_url.format(source_id, api_key)
-
-    with urllib.request.urlopen(get_news_source_url) as url:
-        source_data = url.read()
-        source_response = json.loads(source_data)
-
-        source_items = None
-
-        if source_response['articles']:
-            source_article_list = source_response['articles']
-            source_articles = process_articles(source_article_list)
-
-    return source_articles
 
     
 def get_by_category(category):
