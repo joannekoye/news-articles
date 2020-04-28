@@ -1,6 +1,6 @@
 from flask import render_template, request
 from . import main
-from ..requests import get_top_headlines, get_sources, get_by_language, get_by_category, open_source_articles
+from ..requests import get_top_headlines, get_sources, get_by_language, get_by_category, view_articles
 
 # Views
 @main.route('/')
@@ -31,8 +31,8 @@ def index():
     return render_template('index.html', sources = sources, title = title, Categories = NewCategories, Languages = NewLanguages, sort_type = sort_type, headlines = top_headlines)
 
 @main.route('/source/<id>')
-def source_articles(id):
-    news_articles = open_source_articles(id)
+def source_articles_page(id):
+    news_articles = view_articles(id)
     title = id
 
     return render_template('source_articles.html', title = title, articles= news_articles)

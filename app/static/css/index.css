@@ -1,18 +1,29 @@
+.maintitle {
+    font-family: 'Playfair Display', serif;
+    color: black;
+    text-decoration: underline;
+}
+.cursive {
+    font-family: 'Playfair Display', serif;
+    color: crimson;
+}
+.container {
+    font-family: 'Raleway', sans-serif;
+    color: black;
+}
 .title {
     font-family: 'Playfair Display', serif;
     text-decoration: underline;
+    color: rgb(187, 15, 50);
 }
 
-.container {
-    font-family: 'Open Sans', sans-serif;
+.footer {
+    font-family: 'Playfair Display', serif;
+    color: black;
 }
-
-.words {
-    font-family: 'Open Sans', sans-serif;
+a {
+    color: black;
 }
-
-.card {
-    height: 400px;
-    width: 400px;
-    border-radius: 10px;
+.sorted {
+    color: black;
 }

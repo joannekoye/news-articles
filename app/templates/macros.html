@@ -1,53 +1,82 @@
+{% macro displayTopHeadlines(topheadlines) %}
+  {% for headline in topheadlines %}
+    {% if topheadlines.index(headline) < 3 %}
+      <div class=" col-md-12 col-md-4 card text-center">
+        {% if headline.urlToImage %}
+          <img class="card-img-top" src={{headline.urlToImage}} class="img-responsive" width="300" height="300">
+        {% else %}
+          <img class="card-img-top" src="https://tse4.mm.bing.net/th?q=burgundy+color" class="img-responsive" width="300" height="300">
+        {% endif %}
+        <div class="card-body">
+          <h4 class="card-text">{{headline.title}}</h4>
+          <br>
+          <hr>
+          <a href={{headline.url}}><button type="button" class="btn btn-danger"> Get full story </button></a>
+          <br>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endmacro %}
 
 
 {% macro displaySourceList(source_list) %}
-
-    {% for source in source_list %}
-      <div class="card col-sm-12 col-md-6 text-center">
-        <div class="card-header"><h4>{{ source.name }}</h4></div>
-        <hr>
-        <div class="card-body">
-          <h5>{{ source.description }}</h5>
-          <hr>
-          <a href={{ source.url }}><button type="button" class="btn btn-primary"> Visit Website</button></a>
-          <a href="/source/{{ source.id }}"><button type="button" class="btn btn-secondary">  Explore Articles</button></a>
-        </div>
-      </div>
-      
-    {% endfor %}
-
+  {% for source in source_list %}
+    <div class="card col-md-12 col-md-4" >
+      <h4 class="card-header text-center"><strong>{{ source.name }}</strong></h4>
+      <hr>
+      <h5 class="card-text text-dark text-center">{{ source.description }}</h5>
+      <hr>
+      <a href={{ source.url }}><button type="button" class="btn btn-danger"> Visit Website</button></a>
+      <a href="/source/{{ source.id }}"><button type="button" class="btn btn-secondary">  Explore Articles</button></a>
+      <br>
+      <br>
+    </div>
+  {% endfor %}
 {% endmacro %}
+
 
 {% macro displayNewsArticles(source_articles) %}
   {% for article in source_articles %}
-      <div>
-        <div class="card col-sm-12 col-md-6 text-center text-center">
-          <h5> <strong>Author: </strong> {{article.author}}</h5>
-          <h4> <strong>Title:</strong> {{article.title}}</h4>
-          <p> <strong>Description:</strong> {{article.description}}</p>
-          <h5> <strong>Published on:</strong> {{article.publishedAt | truncate(13, False, '   ')}}</h5>
-          <p>{{article.content | truncate(264, False, '  ')}}</p>
-          <a href={{article.url}}><button type="button" class="btn btn-primary"> Continue Reading </button></a>
+    {% if article == None %}
+      <img src="https://image.cnbcfm.com/api/v1/image/106146891-1569357040462targetdown.jpg?v=1569357108">
+    {% else %}
+      <div class="col-md-12 col-md-4 card text-center">
+        {% if article.urlToImage %}
+          <img class="card-img-top" src={{article.urlToImage}} class="img-responsive" width="300" height="250">
+        {% else %}
+          <img class="card-img-top" src="https://tse4.mm.bing.net/th?q=burgundy+color" class="img-responsive" width="300" height="300">
+        {% endif %}
+        <div class="card-body">
+          <h4 class="card-text" > <strong>{{article.title}}</strong></h4>
+          <h5 class="card-text" > By: <strong>{{article.author}} </strong></h5>
+          <p class="card-text" > <strong>Description:</strong> {{article.description}}</p>
+          <h6 class="card-text" > Published on: <strong>{{article.publishedAt | truncate(13, False, '   ')}}</strong></h6>
+          <a href={{article.url}}><button type="button" class="btn btn-danger"> Continue Reading </button></a>
+          <br>
         </div>
+        <br>
       </div>
-      <br>
+    {% endif%}
   {% endfor %}
 {% endmacro %}
+
 
 {% macro displayCategory(all_news_sources) %}
   {% for source in all_news_sources %}
     {% if source == all_news_sources[0] %}
-      <h3> {{ source.category | capitalize | center}} News</h3>
+      <h2 class="text-center sorted"> {{ source.category | capitalize | center}} News</h2>
       <hr>
     {% endif %}
   {% endfor %}
 {% endmacro %}
 
+
 {% macro displayLanguage(all_news_sources) %}
   {% for source in all_news_sources %}
     {% if source == all_news_sources[0] %}
-      <h3> {{ source.language | capitalize | center}} Language News</h3>
+      <h2 class="text-center sorted"> {{ source.language | capitalize | center}} Language News</h2>
       <hr>
-    {% endif %}
+      {% endif %}
   {% endfor %}
 {% endmacro %}

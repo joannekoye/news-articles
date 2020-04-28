@@ -26,7 +26,7 @@ def configure_request(app):
     language_url = app.config['LANGUAGE_URL']
     search_url = app.config['SEARCH_URL']
 
-def open_source_articles(source_id):
+def view_articles(source_id):
     '''
     Function that processes a news source and transforms it into an object list
 
@@ -49,7 +49,7 @@ def open_source_articles(source_id):
             source_article_list = source_response['articles']
             source_articles = process_articles(source_article_list)
 
-    return source_articles
+            return source_articles
 
 def get_top_headlines():
     '''
@@ -145,12 +145,15 @@ def process_articles(article_list):
         title = article.get('title')
         description = article.get('description')
         url = article.get('url')
+        urlToImage = article.get('urlToImage')
         publishedAt = article.get('publishedAt')
         content = article.get('content')
 
-        article_object = Article(author, title, description, url, publishedAt, content)
-        article_results.append(article_object)
-    
+        if urlToImage:
+            article_object = Article(author, title, description, url, urlToImage, publishedAt, content)
+            article_results.append(article_object)
+        
+
     return article_results
 
 
